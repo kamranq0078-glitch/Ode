@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>For Daddy | An Ode for Ainain</title>
+  <meta name="description" content="A warm, quiet sanctuary of remembrance and love for Ainain's beloved grandfather.">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Typography:
+       - Cormorant Garamond: Dignified, sacred serif for headings and poetic lines
+       - Plus Jakarta Sans: Clean, legible body text for mobile reading
+       - Noto Nastaliq Urdu & Amiri: Sacred Arabic and Nastaliq Urdu typography
+       - Caveat: Authentic, intimate handwriting for Ainain's personal letter
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Ambience: Slowly drifting Chinar leaves and warm diya embers -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Accessibility / Quiet Mode Toggle (Floating top control) -->
+  <header class="top-nav" aria-label="Quick controls">
+    <div class="top-nav-inner">
+      <span class="nav-brand">For Daddy</span>
+      <div class="nav-actions">
+        <button id="ambient-toggle" class="nav-btn" aria-label="Toggle falling leaves animation" title="Toggle gentle animation">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span class="btn-text">Ambiance</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================================================= -->
+  <!-- 1. OPENING GATE                                                   -->
+  <!-- A dark, quiet screen with a softly glowing diya.                  -->
+  <!-- User gesture required by iOS/Android to start audio experience.   -->
+  <!-- ================================================================= -->
+  <div id="opening-gate" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-content">
+      
+      <!-- Glowing Kashmiri Diya -->
+      <div class="diya-wrapper" aria-hidden="true">
+        <div class="diya-glow"></div>
+        <svg class="diya-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Diya flame aura & core -->
+          <ellipse class="flame-halo" cx="80" cy="40" rx="22" ry="30" fill="url(#haloGlow)" opacity="0.6"/>
+          <path class="flame-outer" d="M80 12 C72 30 64 45 68 58 C72 70 88 70 92 58 C96 45 88 30 80 12 Z" fill="url(#flameOuterGrad)"/>
+          <path class="flame-inner" d="M80 24 C75 36 71 45 74 54 C77 62 83 62 86 54 C89 45 85 36 80 24 Z" fill="url(#flameInnerGrad)"/>
+          <ellipse class="flame-core" cx="80" cy="52" rx="3.5" ry="5.5" fill="#FFFDF0"/>
+          <!-- Diya wick -->
+          <path d="M80 54 Q81 60 80 66" stroke="#4A2600" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Diya clay vessel with warm brass luster -->
+          <ellipse cx="80" cy="74" rx="42" ry="12" fill="url(#diyaRimGrad)"/>
+          <path d="M38 74 C38 96 55 106 80 106 C105 106 122 96 122 74 C116 79 100 83 80 83 C60 83 44 79 38 74 Z" fill="url(#diyaBodyGrad)"/>
+          <ellipse cx="80" cy="106" rx="24" ry="4" fill="#060C0B" opacity="0.6"/>
+          <!-- Gradients -->
+          <defs>
+            <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFB347" stop-opacity="0.8"/>
+              <stop offset="60%" stop-color="#FF7A00" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#FF5100" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="flameOuterGrad" x1="80" y1="12" x2="80" y2="68" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFF6D1"/>
+              <stop offset="35%" stop-color="#FFB039"/>
+              <stop offset="75%" stop-color="#E25822"/>
+              <stop offset="100%" stop-color="#9E2A00"/>
+            </linearGradient>
+            <linearGradient id="flameInnerGrad" x1="80" y1="24" x2="80" y2="58" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="50%" stop-color="#FFF3B0"/>
+              <stop offset="100%" stop-color="#FFA834"/>
+            </linearGradient>
+            <linearGradient id="diyaRimGrad" x1="38" y1="74" x2="122" y2="74" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#9C6B30"/>
+              <stop offset="50%" stop-color="#E2B770"/>
+              <stop offset="100%" stop-color="#805420"/>
+            </linearGradient>
+            <linearGradient id="diyaBodyGrad" x1="80" y1="74" x2="80" y2="106" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#73471A"/>
+              <stop offset="40%" stop-color="#553412"/>
+              <stop offset="100%" stop-color="#2D1905"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="gate-typography">
+        <p class="gate-kashmiri-whisper">A quiet space for Ainain</p>
+        <h1 id="gate-title" class="gate-headline">For Daddy</h1>
+        <p class="gate-subtext">Step inside, into the warmth.<br>Listen to his voice once more.</p>
+      </div>
+
+      <button id="gate-start-btn" class="gate-button" aria-label="Tap to enter tribute and begin audio">
+        <span class="btn-glow-aura"></span>
+        <span class="btn-label-wrap">
+          <svg class="btn-play-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <span class="btn-label-text">Tap to begin</span>
+        </span>
+      </button>
+
+      <p class="gate-disclaimer">Tap begins his naat softly</p>
+    </div>
+  </div>
+
+  <!-- Sticky Mini Audio Bar (Appears when scrolled past main player) -->
+  <div id="sticky-audio-bar" class="sticky-player-bar hidden" aria-label="Floating audio control" role="region">
+    <div class="sticky-bar-inner">
+      <button id="sticky-play-btn" class="sticky-play-btn" aria-label="Play or pause naat">
+        <svg class="sticky-icon play-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="sticky-icon pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+      <div class="sticky-info" id="sticky-jump-player" role="button" tabindex="0" title="Click to view main audio player">
+        <span class="sticky-title">Daddy's Naat</span>
+        <span class="sticky-time" id="sticky-time-display">0:00 / 7:08</span>
+      </div>
+      <div class="sticky-progress-wrap">
+        <div class="sticky-progress-fill" id="sticky-progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN SCROLL CONTAINER -->
+  <main id="tribute-main" class="main-container">
+
+    <!-- ================================================================= -->
+    <!-- 2. DEDICATION & TITLE                                             -->
+    <!-- Sacred typography, Islamic remembrance, grandfather's name & years -->
+    <!-- ================================================================= -->
+    <section class="section section-dedication" id="section-dedication">
+      <div class="content-wrapper text-center">
+
+        <!-- Sacred Quranic line in Nastaliq script -->
+        <div class="sacred-verse-wrap fade-in">
+          <p class="arabic-script urdu-nastaliq" lang="ur" dir="rtl">
+            إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ
+          </p>
+          <p class="arabic-transliteration">
+            “Inna lillahi wa inna ilayhi raji'un”
+          </p>
+          <p class="arabic-meaning">
+            Surely to Allah we belong, and to Him we shall return.
+          </p>
+        </div>
+
+        <!-- Kashmiri Kani / Paisley Divider -->
+        <div class="divider-wrap fade-in" aria-hidden="true">
+          <svg class="kani-divider" viewBox="0 0 320 28" fill="none">
+            <path d="M10 14 H120 M200 14 H310" stroke="url(#goldLineGrad)" stroke-width="1" stroke-opacity="0.4"/>
+            <path d="M160 4 C153 10 148 14 136 14 C148 14 153 18 160 24 C167 18 172 14 184 14 C172 14 167 10 160 4 Z" fill="url(#goldDiamondGrad)" opacity="0.8"/>
+            <circle cx="160" cy="14" r="2.5" fill="#FDF3CE"/>
+            <circle cx="120" cy="14" r="1.5" fill="#E5C387" opacity="0.6"/>
+            <circle cx="200" cy="14" r="1.5" fill="#E5C387" opacity="0.6"/>
+            <defs>
+              <linearGradient id="goldLineGrad" x1="0" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#E5C387" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#E5C387" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#E5C387" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="goldDiamondGrad" x1="136" y1="14" x2="184" y2="14" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#D49E48"/>
+                <stop offset="50%" stop-color="#FFF0BE"/>
+                <stop offset="100%" stop-color="#D49E48"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- Grandfather's Dedication Title Block -->
+        <div class="title-block fade-in">
+          <span class="whisper-label">In Loving Memory of</span>
+          <h1 class="grandfather-name">
+            Sheikh Mohammad<br>Abdullah
+          </h1>
+          <p class="grandfather-years">
+            In Eternal Remembrance • 2026
+          </p>
+          <p class="blessing-line">
+            Allah ki rehmat ho un par. 🤍
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 3. HIS VOICE — THE CENTERPIECE                                    -->
+    <!-- Custom sacred audio player with live waveforms & tactile controls -->
+    <!-- ================================================================= -->
+    <section class="section section-voice" id="section-voice">
+      <div class="content-wrapper">
+
+        <div class="voice-card fade-in">
+          
+          <!-- Card Decorative Header -->
+          <div class="voice-card-header">
+            <span class="sacred-badge">
+              <svg class="mini-chinar-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L13.5 7L18 6L16 10.5L21 12L16.5 14.5L18 19L13 17L12 22L11 17L6 19L7.5 14.5L3 12L8 10.5L6 6L10.5 7L12 2Z"/>
+              </svg>
+              <span>The Sacred Voice</span>
+            </span>
+            <h2 class="voice-title">Daddy’s Naat</h2>
+            <p class="voice-caption">A naat in Daddy’s voice, from his last days.</p>
+          </div>
+
+          <!-- Pulsing Warm Diya Glow behind player -->
+          <div class="player-glow-aura" id="player-glow"></div>
+
+          <!-- Soundwave / Equalizer Animation -->
+          <div class="waveform-container" id="waveform-visualizer" aria-hidden="true">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+
+          <!-- Scrubbable Progress Bar -->
+          <div class="progress-area">
+            <div class="time-readouts">
+              <span id="current-time" class="time-label">0:00</span>
+              <span id="duration-time" class="time-label">7:08</span>
+            </div>
+            <div class="progress-track" id="progress-track" role="slider" aria-label="Audio playback seeker" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+              <div class="progress-fill" id="progress-fill"></div>
+              <div class="progress-thumb" id="progress-thumb"></div>
+            </div>
+          </div>
+
+          <!-- Player Controls: Skip 10s, Play/Pause, Forward 10s, Volume -->
+          <div class="player-controls">
+            
+            <!-- Skip -10s -->
+            <button id="skip-back-btn" class="ctrl-btn secondary-btn" aria-label="Rewind 10 seconds" title="Rewind 10 seconds">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.2 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+              </svg>
+              <span class="ctrl-tiny-text">10s</span>
+            </button>
+
+            <!-- Main Play / Pause Button -->
+            <button id="main-play-btn" class="ctrl-btn play-main-btn" aria-label="Play or pause naat">
+              <span class="play-btn-halo"></span>
+              <svg id="play-icon-svg" class="main-ctrl-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg id="pause-icon-svg" class="main-ctrl-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            </button>
+
+            <!-- Skip +10s -->
+            <button id="skip-fwd-btn" class="ctrl-btn secondary-btn" aria-label="Forward 10 seconds" title="Forward 10 seconds">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.5 8c2.65 0 5.05.99 6.9 2.6L22 7v9h-9l3.62-3.62c-1.39-1.2-3.16-1.88-5.12-1.88-3.54 0-6.55 2.31-7.6 5.5l-2.37-.78C2.92 11.03 6.85 8 11.5 8z"/>
+              </svg>
+              <span class="ctrl-tiny-text">10s</span>
+            </button>
+
+          </div>
+
+          <!-- Volume and Audio Note -->
+          <div class="player-footer">
+            <div class="volume-container">
+              <button id="mute-btn" class="volume-btn" aria-label="Mute or unmute">
+                <svg id="vol-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+              </button>
+              <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Audio volume">
+            </div>
+
+            <p class="headphone-tip">
+              <svg class="tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+              </svg>
+              <span>Best heard in a quiet moment, with headphones.</span>
+            </p>
+          </div>
+
+          <!-- Underlying Audio Element with preload metadata -->
+          <audio id="naat-audio" preload="metadata" playsinline>
+            <source src="assets/naat.mp3" type="audio/mpeg">
+            <source src="Naat.mp3" type="audio/mpeg">
+            Your browser does not support audio playback.
+          </audio>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 4. WHO HE WAS                                                     -->
+    <!-- Styled like treasured pages of a handwritten diary / journal      -->
+    <!-- ================================================================= -->
+    <!-- 4. WHO HE WAS — KEEPSAKE OF DADDY'S LIFE                          -->
+    <!-- Styled like treasured pages of a handwritten diary / journal      -->
+    <!-- ================================================================= -->
+    <section class="section section-who" id="section-who">
+      <div class="content-wrapper">
+
+        <div class="section-heading text-center fade-in">
+          <span class="sub-heading-badge">Keepsake</span>
+          <h2 class="section-title">Who He Was</h2>
+          <p class="section-subtitle">A proud spirit, sweet daily rituals, and unwavering devotion.</p>
+        </div>
+
+        <div class="journal-stack">
+
+          <!-- Entry 1: A Proud & Dignified Soul -->
+          <article class="journal-page fade-in">
+            <div class="journal-corner-fold" aria-hidden="true"></div>
+            <div class="journal-header">
+              <span class="journal-motif">
+                <!-- Dignified Mountain / Crest Motif -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2L2 22h20L12 2z"/>
+                  <path d="M12 2v20"/>
+                </svg>
+              </span>
+              <h3 class="journal-title">A Proud & Steadfast Man</h3>
+            </div>
+            <div class="journal-body">
+              <p class="journal-text">
+                Daddy was a proud man, carrying himself with deep self-respect, quiet stature, and an honorable grace. He never compromised on his dignity. Yet beneath that proud demeanor was a heart that belonged entirely to others — whenever anyone was in need, he was always the first to show up. A dependable rock for everyone around him, always present, without ever asking for praise.
+              </p>
+            </div>
+            <div class="journal-footer">
+              <span class="journal-note-tag">Dignity and honor</span>
+            </div>
+          </article>
+
+          <!-- Entry 2: Chocolates at the Window -->
+          <article class="journal-page fade-in">
+            <div class="journal-corner-fold" aria-hidden="true"></div>
+            <div class="journal-header">
+              <span class="journal-motif">
+                <!-- Sweet Gift / Heart Window Motif -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <line x1="12" y1="3" x2="12" y2="21"/>
+                  <line x1="3" y1="12" x2="21" y2="12"/>
+                </svg>
+              </span>
+              <h3 class="journal-title">Chocolates at the Window</h3>
+            </div>
+            <div class="journal-body">
+              <p class="journal-text">
+                Every single day, without fail, he made sure there was sweetness in the house. He would walk up, gently knock on Ainain’s window, and wait with that warm, knowing smile. When the window opened, out came chocolates — handed out generously not just to her, but to all the kids gathered around. A daily ritual of pure warmth that turned every ordinary afternoon into something magical.
+              </p>
+            </div>
+            <div class="journal-footer">
+              <span class="journal-note-tag">Every single day</span>
+            </div>
+          </article>
+
+          <!-- Entry 3: From HMT to Sopore -->
+          <article class="journal-page fade-in">
+            <div class="journal-corner-fold" aria-hidden="true"></div>
+            <div class="journal-header">
+              <span class="journal-motif">
+                <!-- Prayer & Journey Motif -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <h3 class="journal-title">From HMT to Sopore</h3>
+            </div>
+            <div class="journal-body">
+              <p class="journal-text">
+                Every week, rain or shine, cold or warm, he made the long journey from HMT all the way to Sopore to attend the Ijtimas. What made him remarkable was his fierce, unwavering independence — he never asked for anyone’s help, never asked for a ride, and never burdened a soul. His devotion was walked with his own two feet and his quiet determination, trusting only in Allah.
+              </p>
+            </div>
+            <div class="journal-footer">
+              <span class="journal-note-tag">Fierce independence & faith</span>
+            </div>
+          </article>
+
+          <!-- Entry 4: Always There, Forever Her Daddy -->
+          <article class="journal-page fade-in">
+            <div class="journal-corner-fold" aria-hidden="true"></div>
+            <div class="journal-header">
+              <span class="journal-motif">
+                <!-- Warm Heart / Protection Motif -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </span>
+              <h3 class="journal-title">Always There, Forever Her Daddy</h3>
+            </div>
+            <div class="journal-body">
+              <p class="journal-text">
+                He gave everything he had to the people he loved, and never asked for a single thing in return. For Ainain, he was a constant fortress of love. Even now, across the miles between Kashmir and Bangalore, the memory of his proud footsteps, the knock on her window, and the devotion in his voice remains her greatest comfort.
+              </p>
+            </div>
+            <div class="journal-footer">
+              <span class="journal-note-tag">Forever in her heart</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 5. A LETTER FOR AINAIN — THE EMOTIONAL CORE                       -->
+    <!-- Single centered card on parchment texture with handwriting font   -->
+    <!-- Caveat font used exclusively for this intimate section            -->
+    <!-- ================================================================= -->
+    <section class="section section-letter" id="section-letter">
+      <div class="content-wrapper">
+
+        <div class="letter-outer-frame fade-in">
+          <div class="letter-parchment">
+            
+            <div class="letter-stamp" aria-hidden="true">
+              <div class="stamp-border">
+                <span class="stamp-kashmir">KASHMIR</span>
+                <svg class="stamp-chinar" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L13.5 7L18 6L16 10.5L21 12L16.5 14.5L18 19L13 17L12 22L11 17L6 19L7.5 14.5L3 12L8 10.5L6 6L10.5 7L12 2Z"/>
+                </svg>
+                <span class="stamp-post">WITH LOVE</span>
+              </div>
+            </div>
+
+            <div class="letter-heading-block">
+              <p class="letter-recipient">My dearest Ainain,</p>
+            </div>
+
+            <div class="letter-content handwritten-font">
+              <p>
+                I know how heavy your heart feels right now, sitting in Bangalore, so many miles away from Kashmir, from HMT, from the cold mountain air, and from the quiet home where you grew up calling him Daddy.
+              </p>
+
+              <p>
+                Grief feels twice as sharp when you are far from home. It arrives in the quiet moments between calls, in the evening when the city outside moves too fast, and in the sudden longing to look over at the window and hear that familiar, gentle knock — remembering him standing there with chocolates in his hands for you and all the kids.
+              </p>
+
+              <p>
+                Daddy was such a proud, honorable man. He was always there for everyone, yet so fiercely independent that he would journey from HMT to Sopore every week for his Ijtimas without ever asking for anyone’s help. That same quiet strength, that same dignity and generous heart, lives on right inside you.
+              </p>
+
+              <p>
+                I made this little room for you so you never have to feel that distance. Whenever you miss him, you can step into this sanctuary, close your eyes, and listen to the naat he sang in his final days. It is Daddy's voice, soft and unbroken, preserved here just for you.
+              </p>
+
+              <p>
+                Please remember, my love: you are never alone in this grief. Daddy’s love did not end when he closed his eyes. It lives on in your gentle nature, in the way you care for everyone around you, in your sisters, and in every prayer your family whispers. He was so proud of you, and he is watching over you with the same warmth he always had.
+              </p>
+
+              <p class="letter-closing">
+                Always here beside you,<br>
+                <span class="letter-signature">With all my love 🤍</span>
+              </p>
+            </div>
+
+            <div class="letter-deckle-edge" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 7. A DUA FOR HIS MAGHFIRAT                                        -->
+    <!-- Sacred prayer for forgiveness and high rank in Jannah             -->
+    <!-- Interactive gentle Ameen button with soft luminous glow           -->
+    <!-- ================================================================= -->
+    <section class="section section-dua" id="section-dua">
+      <div class="content-wrapper text-center">
+
+        <div class="dua-card fade-in">
+          
+          <div class="dua-icon-wrap" aria-hidden="true">
+            <svg class="tasbih-dua-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93L12 22l.75-12.07C14.6 9.58 16 7.95 16 6a4 4 0 0 0-4-4z"/>
+              <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+
+          <span class="sub-heading-badge">Dua for Maghfirat</span>
+          <h2 class="dua-title">A Prayer for Daddy</h2>
+
+          <!-- Arabic Prayer in Nastaliq / Amiri Script -->
+          <div class="arabic-dua-block">
+            <p class="arabic-dua-text urdu-nastaliq" lang="ar" dir="rtl">
+              اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ وَأَكْرِمْ نُزُلَهُ وَوَسِّعْ مُدْخَلَهُ وَاجْعَلْ قَبْرَهُ رَوْضَةً مِنْ رِيَاضِ الْجَنَّةِ
+            </p>
+          </div>
+
+          <!-- Transliteration -->
+          <p class="dua-transliteration">
+            “Allahumma-ghfir lahu warhamhu, wa 'afihi wa'fu 'anhu, wa akrim nuzulahu, wa wassi' mudkhalahu, waj'al qabrahu rawdatan min riyad-il-jannah.”
+          </p>
+
+          <!-- English Meaning -->
+          <p class="dua-translation">
+            “O Allah, forgive him and have mercy upon him. Grant him peace and pardon him. Honor his resting place, widen his entrance, and make his grave a garden from the gardens of Paradise.”
+          </p>
+
+          <!-- Ameen Button: Gentle, sacred glow when pressed -->
+          <div class="ameen-action-wrap">
+            <button id="ameen-btn" class="ameen-button" aria-label="Say Ameen for Daddy">
+              <span class="ameen-ripple"></span>
+              <span id="ameen-btn-text" class="ameen-text">Ameen 🤲</span>
+            </button>
+            <p id="ameen-feedback" class="ameen-note" aria-live="polite">
+              May Allah accept our dua.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 8. FOOTER                                                         -->
+    <!-- Sacred closing, restart naat link                                 -->
+    <!-- ================================================================= -->
+    <footer class="site-footer">
+      <div class="content-wrapper text-center">
+
+        <div class="footer-chinar-motif" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L13.5 7L18 6L16 10.5L21 12L16.5 14.5L18 19L13 17L12 22L11 17L6 19L7.5 14.5L3 12L8 10.5L6 6L10.5 7L12 2Z"/>
+          </svg>
+        </div>
+
+        <p class="footer-dedication">
+          Made with love, for Ainain. Daddy's voice lives on. 🤍
+        </p>
+
+        <div class="footer-links">
+          <button id="footer-replay-btn" class="footer-replay-link">
+            <svg class="replay-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+            </svg>
+            <span>Play the naat again</span>
+          </button>
+          
+          <span class="footer-bullet">•</span>
+
+          <a href="#section-dedication" class="footer-top-link">
+            <span>Back to top</span>
+          </a>
+        </div>
+
+        <p class="footer-kashmir-peace">
+          Srinagar • Bangalore • In Eternal Remembrance
+        </p>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

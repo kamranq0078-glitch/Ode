@@ -1,0 +1,1570 @@
+/* ==========================================================================
+   FOR DADDY — AN ODE FOR AINAIN
+   Mobile-First Sacred Tribute Stylesheet
+   Palette: Warm Candlelight, Kashmiri Dusk, Amber, Gold, Cream, Pashmina Rose
+   ========================================================================== */
+
+/* --- CSS Reset & Variables --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Palette */
+  --bg-darkest: #071110;
+  --bg-deep: #0b1817;
+  --bg-card: rgba(14, 28, 26, 0.82);
+  --bg-card-solid: #0e1c1a;
+  --bg-parchment: #12211e;
+  --bg-parchment-inner: #f6eedb;
+  --parchment-ink: #2b2014;
+
+  /* Gold & Warm Tones */
+  --gold-primary: #e5c387;
+  --gold-light: #f7e6c4;
+  --gold-bright: #ffd58a;
+  --gold-deep: #b88b42;
+  --gold-subtle: rgba(229, 195, 135, 0.16);
+  --gold-border: rgba(229, 195, 135, 0.22);
+  --gold-glow: rgba(229, 195, 135, 0.35);
+
+  /* Amber & Saffron */
+  --saffron: #d97d36;
+  --saffron-bright: #f39c38;
+  --amber-deep: #a54b1c;
+  --chinar-red: #9e3626;
+
+  /* Pashmina Rose */
+  --pashmina-rose: #c97b83;
+  --pashmina-rose-subtle: rgba(201, 123, 131, 0.2);
+
+  /* Typography Colors */
+  --text-main: #f8f4ec;
+  --text-cream: #efe5d6;
+  --text-muted: #9baaa3;
+  --text-faint: #687973;
+
+  /* Typography Families */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Amiri', serif;
+  --font-arabic: 'Amiri', 'Noto Nastaliq Urdu', serif;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* Shadows & Glows */
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px var(--gold-border);
+  --shadow-glow: 0 0 35px -5px rgba(243, 156, 56, 0.25);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+/* Base Document */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-darkest);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-cream);
+  background: radial-gradient(circle at 50% 0%, #102624 0%, var(--bg-deep) 45%, var(--bg-darkest) 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Canvas Ambience */
+#ambient-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* Layout Containers */
+.main-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* --- Top Navigation / Controls --- */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  padding: 12px 18px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  pointer-events: none;
+}
+
+.top-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  opacity: 0.85;
+}
+
+.nav-actions {
+  pointer-events: auto;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(14, 28, 26, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(22, 42, 39, 0.9);
+  border-color: var(--gold-primary);
+}
+
+.nav-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- Common Section Styling --- */
+.section {
+  padding: 60px 0;
+  position: relative;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.sub-heading-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+/* Fade In Elements */
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   1. OPENING GATE (Fullscreen Modal)
+   ========================================================================== */
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999;
+  background: radial-gradient(circle at 50% 45%, #132724 0%, #0a1715 50%, #040908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gate-overlay.gate-fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gate-overlay.gate-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+
+.gate-content {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Diya Presentation */
+.diya-wrapper {
+  position: relative;
+  width: 160px;
+  height: 120px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diya-glow {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(243, 156, 56, 0.4) 0%, rgba(229, 195, 135, 0.15) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: diyaGlowPulse 3.5s ease-in-out infinite alternate;
+}
+
+.diya-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 15px rgba(243, 156, 56, 0.3));
+}
+
+.flame-outer {
+  animation: flameFlickerOuter 2.8s ease-in-out infinite alternate;
+  transform-origin: 80px 58px;
+}
+
+.flame-inner {
+  animation: flameFlickerInner 2.2s ease-in-out infinite alternate;
+  transform-origin: 80px 54px;
+}
+
+.gate-kashmiri-whisper {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.gate-headline {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--gold-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.gate-subtext {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 34px;
+}
+
+/* Gate Button */
+.gate-button {
+  position: relative;
+  background: linear-gradient(135deg, rgba(32, 58, 54, 0.9) 0%, rgba(18, 38, 35, 0.95) 100%);
+  border: 1px solid var(--gold-primary);
+  border-radius: 50px;
+  padding: 16px 36px;
+  color: var(--gold-bright);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(229, 195, 135, 0.25), 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s ease;
+}
+
+.gate-button:hover, .gate-button:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(243, 156, 56, 0.45), 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-color: #ffd899;
+}
+
+.gate-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-glow-aura {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(229, 195, 135, 0.25), transparent 70%);
+  animation: auraBreath 3s ease-in-out infinite;
+}
+
+.btn-label-wrap {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-play-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--gold-light);
+}
+
+.gate-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  margin-top: 18px;
+  letter-spacing: 0.05em;
+}
+
+
+/* ==========================================================================
+   2. DEDICATION & TITLE
+   ========================================================================== */
+.section-dedication {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.sacred-verse-wrap {
+  margin-bottom: 24px;
+}
+
+.arabic-script {
+  font-family: var(--font-urdu);
+  font-size: 1.7rem;
+  line-height: 2.2;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+  text-shadow: 0 0 15px rgba(229, 195, 135, 0.2);
+}
+
+.arabic-transliteration {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-cream);
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.arabic-meaning {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* Kashmiri Kani Divider */
+.divider-wrap {
+  margin: 30px auto;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+}
+
+.kani-divider {
+  width: 100%;
+  height: 28px;
+}
+
+/* Grandfather Title Block */
+.title-block {
+  margin-top: 10px;
+}
+
+.whisper-label {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--pashmina-rose);
+  margin-bottom: 8px;
+}
+
+.grandfather-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 5.8vw, 2.65rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--gold-bright);
+  line-height: 1.25;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  word-wrap: break-word;
+}
+
+.grandfather-years {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  color: var(--gold-primary);
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+.blessing-line {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-cream);
+  font-weight: 400;
+}
+
+
+/* ==========================================================================
+   3. HIS VOICE (CENTERPIECE AUDIO PLAYER)
+   ========================================================================== */
+.section-voice {
+  padding: 40px 0 60px;
+}
+
+.voice-card {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 34px 24px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.voice-card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.sacred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  background: rgba(229, 195, 135, 0.08);
+  border: 1px solid rgba(229, 195, 135, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.mini-chinar-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--saffron);
+}
+
+.voice-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 400;
+  color: var(--gold-light);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.voice-caption {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Diya glow aura behind the player */
+.player-glow-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(243, 156, 56, 0.18) 0%, rgba(229, 195, 135, 0.06) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0.4;
+}
+
+.voice-card.is-playing .player-glow-aura {
+  opacity: 0.85;
+  transform: translate(-50%, -50%) scale(1.15);
+  animation: auraThrob 4s ease-in-out infinite alternate;
+}
+
+/* Soundwave Equalizer */
+.waveform-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 48px;
+  margin: 12px auto 26px;
+  max-width: 300px;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 6px;
+  background: var(--gold-border);
+  border-radius: 3px;
+  transition: height 0.3s ease, background 0.3s ease;
+}
+
+.voice-card.is-playing .wave-bar {
+  background: linear-gradient(to top, var(--saffron), var(--gold-primary));
+  animation: waveBounce 1.4s ease-in-out infinite alternate;
+}
+
+/* Staggered animation delays for natural wave motion */
+.voice-card.is-playing .wave-bar:nth-child(1)  { animation-delay: 0.1s; animation-duration: 1.1s; }
+.voice-card.is-playing .wave-bar:nth-child(2)  { animation-delay: 0.3s; animation-duration: 1.4s; }
+.voice-card.is-playing .wave-bar:nth-child(3)  { animation-delay: 0.2s; animation-duration: 0.9s; }
+.voice-card.is-playing .wave-bar:nth-child(4)  { animation-delay: 0.5s; animation-duration: 1.3s; }
+.voice-card.is-playing .wave-bar:nth-child(5)  { animation-delay: 0.15s; animation-duration: 1.5s; }
+.voice-card.is-playing .wave-bar:nth-child(6)  { animation-delay: 0.4s; animation-duration: 1.0s; }
+.voice-card.is-playing .wave-bar:nth-child(7)  { animation-delay: 0.25s; animation-duration: 1.2s; }
+.voice-card.is-playing .wave-bar:nth-child(8)  { animation-delay: 0.6s; animation-duration: 1.4s; }
+.voice-card.is-playing .wave-bar:nth-child(9)  { animation-delay: 0.1s; animation-duration: 1.6s; }
+.voice-card.is-playing .wave-bar:nth-child(10) { animation-delay: 0.35s; animation-duration: 1.1s; }
+.voice-card.is-playing .wave-bar:nth-child(11) { animation-delay: 0.5s; animation-duration: 1.3s; }
+.voice-card.is-playing .wave-bar:nth-child(12) { animation-delay: 0.2s; animation-duration: 1.5s; }
+.voice-card.is-playing .wave-bar:nth-child(13) { animation-delay: 0.45s; animation-duration: 0.95s; }
+.voice-card.is-playing .wave-bar:nth-child(14) { animation-delay: 0.15s; animation-duration: 1.25s; }
+.voice-card.is-playing .wave-bar:nth-child(15) { animation-delay: 0.3s; animation-duration: 1.4s; }
+.voice-card.is-playing .wave-bar:nth-child(16) { animation-delay: 0.6s; animation-duration: 1.1s; }
+.voice-card.is-playing .wave-bar:nth-child(17) { animation-delay: 0.2s; animation-duration: 1.3s; }
+.voice-card.is-playing .wave-bar:nth-child(18) { animation-delay: 0.4s; animation-duration: 1.0s; }
+.voice-card.is-playing .wave-bar:nth-child(19) { animation-delay: 0.1s; animation-duration: 1.2s; }
+
+/* Progress Area */
+.progress-area {
+  margin-bottom: 24px;
+}
+
+.time-readouts {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  touch-action: none;
+}
+
+.progress-track:focus-visible {
+  box-shadow: 0 0 0 2px var(--gold-primary);
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--saffron), var(--gold-primary));
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 16px;
+  height: 16px;
+  background: var(--gold-light);
+  border: 2px solid var(--bg-card-solid);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(229, 195, 135, 0.8);
+  pointer-events: none;
+  transition: transform 0.1s ease;
+}
+
+.progress-track:hover .progress-thumb {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Controls */
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 26px;
+}
+
+.ctrl-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.secondary-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(229, 195, 135, 0.06);
+  border: 1px solid var(--gold-border);
+  position: relative;
+}
+
+.secondary-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ctrl-tiny-text {
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-primary);
+  margin-top: 2px;
+  line-height: 1;
+}
+
+.secondary-btn:hover {
+  background: rgba(229, 195, 135, 0.14);
+  border-color: var(--gold-primary);
+  transform: scale(1.05);
+}
+
+.play-main-btn {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e5c387 0%, #d49e48 60%, #b88230 100%);
+  color: #172421;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 25px rgba(229, 195, 135, 0.4);
+}
+
+.play-main-btn:hover, .play-main-btn:focus-visible {
+  transform: scale(1.05);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6), 0 0 35px rgba(243, 156, 56, 0.6);
+}
+
+.play-main-btn:active {
+  transform: scale(0.96);
+}
+
+.play-btn-halo {
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(229, 195, 135, 0.35);
+  border-radius: 50%;
+  animation: haloRipple 3s ease-in-out infinite;
+}
+
+.main-ctrl-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Player Footer & Volume */
+.player-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(229, 195, 135, 0.1);
+  padding-top: 18px;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 220px;
+}
+
+.volume-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.volume-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.volume-btn:hover {
+  color: var(--gold-light);
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  border: none;
+  cursor: pointer;
+}
+
+.headphone-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--gold-primary);
+  opacity: 0.85;
+}
+
+.tip-icon {
+  width: 15px;
+  height: 15px;
+}
+
+
+/* ==========================================================================
+   STICKY MINI AUDIO BAR
+   ========================================================================== */
+.sticky-player-bar {
+  position: fixed;
+  bottom: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 480px;
+  background: rgba(10, 24, 22, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--gold-border);
+  border-radius: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(229, 195, 135, 0.2);
+  z-index: 90;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+.sticky-player-bar.hidden {
+  transform: translate(-50%, 40px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sticky-bar-inner {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+  position: relative;
+}
+
+.sticky-play-btn {
+  background: var(--gold-primary);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--bg-darkest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.sticky-play-btn:hover {
+  transform: scale(1.05);
+}
+
+.sticky-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sticky-info {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.sticky-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--gold-light);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.sticky-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sticky-progress-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sticky-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--gold-primary);
+}
+
+
+/* ==========================================================================
+   4. WHO HE WAS (JOURNAL / DIARY PAGES)
+   ========================================================================== */
+.section-who {
+  padding: 60px 0;
+}
+
+.journal-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.journal-page {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px 22px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.journal-page:hover {
+  border-color: rgba(229, 195, 135, 0.4);
+  transform: translateY(-2px);
+}
+
+.journal-corner-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, transparent 50%, rgba(229, 195, 135, 0.25) 50%);
+  border-bottom-left-radius: 4px;
+}
+
+.journal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.journal-motif {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(229, 195, 135, 0.08);
+  border: 1px solid rgba(229, 195, 135, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  flex-shrink: 0;
+}
+
+.journal-motif svg {
+  width: 16px;
+  height: 16px;
+}
+
+.journal-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  line-height: 1.3;
+}
+
+.journal-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-cream);
+  font-weight: 350;
+  margin-bottom: 14px;
+}
+
+.journal-text em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.journal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.journal-note-tag {
+  font-size: 0.75rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--pashmina-rose);
+  opacity: 0.9;
+}
+
+
+/* ==========================================================================
+   5. MEMORIES (GALLERY & MOMENT CARDS)
+   ========================================================================== */
+.section-memories {
+  padding: 60px 0;
+}
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 36px;
+}
+
+.memory-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease;
+}
+
+.memory-photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #091514;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.memory-card:hover .memory-img {
+  transform: scale(1.03);
+}
+
+/* Elegant Placeholder when photos are not yet added */
+.photo-placeholder-box {
+  display: none; /* Shown via onerror in HTML if image missing */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #152c28 0%, #0a1715 100%);
+  border: 1px dashed rgba(229, 195, 135, 0.3);
+}
+
+.placeholder-chinar {
+  width: 38px;
+  height: 38px;
+  color: var(--saffron);
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.placeholder-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+
+.placeholder-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  max-width: 240px;
+  line-height: 1.5;
+}
+
+.placeholder-hint code {
+  color: var(--gold-primary);
+  background: rgba(0,0,0,0.3);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.memory-caption-wrap {
+  padding: 20px 22px;
+  position: relative;
+}
+
+.memory-num {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+  opacity: 0.6;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.memory-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-cream);
+}
+
+
+/* ==========================================================================
+   6. A LETTER FOR AINAIN (THE EMOTIONAL CORE)
+   ========================================================================== */
+.section-letter {
+  padding: 70px 0;
+}
+
+.letter-outer-frame {
+  position: relative;
+  background: linear-gradient(145deg, #182e2a 0%, #0d1e1c 100%);
+  border: 1px solid rgba(229, 195, 135, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(229, 195, 135, 0.15);
+}
+
+.letter-parchment {
+  position: relative;
+  background: #fbf7ed;
+  color: #2b2219;
+  border-radius: calc(var(--radius-lg) - 6px);
+  padding: 40px 24px 34px;
+  box-shadow: inset 0 0 30px rgba(184, 139, 66, 0.15);
+  overflow: hidden;
+}
+
+/* Subtle Kashmir Stamp in corner */
+.letter-stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 60px;
+  height: 68px;
+  border: 1.5px dashed #a55a36;
+  border-radius: 4px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0.85;
+  transform: rotate(4deg);
+}
+
+.stamp-kashmir {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8c3b1a;
+}
+
+.stamp-chinar {
+  width: 20px;
+  height: 20px;
+  color: #a54b1c;
+}
+
+.stamp-post {
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  color: #8c3b1a;
+}
+
+.letter-heading-block {
+  margin-bottom: 24px;
+  padding-right: 70px;
+}
+
+.letter-recipient {
+  font-family: var(--font-handwriting);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #442a18;
+  line-height: 1.2;
+}
+
+.handwritten-font {
+  font-family: var(--font-handwriting);
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: #2c2118;
+}
+
+.handwritten-font p {
+  margin-bottom: 18px;
+}
+
+.letter-closing {
+  margin-top: 28px;
+  font-size: 1.4rem;
+  color: #3b2314;
+}
+
+.letter-signature {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #7a2d36;
+}
+
+
+/* ==========================================================================
+   7. A DUA FOR HIS MAGHFIRAT
+   ========================================================================== */
+.section-dua {
+  padding: 60px 0;
+}
+
+.dua-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 38px 22px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.dua-icon-wrap {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  border-radius: 50%;
+  background: rgba(229, 195, 135, 0.08);
+  border: 1px solid rgba(229, 195, 135, 0.2);
+}
+
+.tasbih-dua-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.dua-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--gold-light);
+  margin-bottom: 22px;
+}
+
+.arabic-dua-block {
+  background: rgba(10, 22, 20, 0.6);
+  border: 1px solid rgba(229, 195, 135, 0.15);
+  border-radius: var(--radius-md);
+  padding: 24px 18px;
+  margin-bottom: 22px;
+}
+
+.arabic-dua-text {
+  font-family: var(--font-urdu);
+  font-size: 1.5rem;
+  line-height: 2.3;
+  color: var(--gold-bright);
+  text-shadow: 0 0 15px rgba(229, 195, 135, 0.25);
+}
+
+.dua-transliteration {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.dua-translation {
+  font-size: 0.95rem;
+  color: var(--text-cream);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 28px;
+  font-weight: 350;
+}
+
+/* Ameen Button */
+.ameen-action-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.ameen-button {
+  position: relative;
+  background: linear-gradient(135deg, rgba(38, 70, 65, 0.8) 0%, rgba(20, 44, 40, 0.95) 100%);
+  border: 1px solid var(--gold-primary);
+  border-radius: 40px;
+  padding: 14px 44px;
+  color: var(--gold-bright);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 20px rgba(229, 195, 135, 0.2);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+.ameen-button:hover, .ameen-button:focus-visible {
+  box-shadow: 0 0 35px rgba(243, 156, 56, 0.45);
+  border-color: #ffd899;
+  transform: translateY(-2px);
+}
+
+.ameen-button.ameen-pressed {
+  background: linear-gradient(135deg, rgba(217, 125, 54, 0.3) 0%, rgba(35, 68, 62, 0.9) 100%);
+  border-color: #ffd58a;
+  box-shadow: 0 0 30px rgba(243, 156, 56, 0.5);
+}
+
+.ameen-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 213, 138, 0.5), transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width 0.6s ease-out, height 0.6s ease-out, opacity 0.6s ease-out;
+  opacity: 0;
+}
+
+.ameen-button:active .ameen-ripple {
+  width: 250px;
+  height: 250px;
+  opacity: 1;
+  transition: 0s;
+}
+
+.ameen-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+  margin-top: 12px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.site-footer {
+  padding: 60px 0 40px;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(229, 195, 135, 0.12);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-chinar-motif {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 16px;
+  color: var(--saffron);
+  opacity: 0.75;
+}
+
+.footer-dedication {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.footer-replay-link, .footer-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-replay-link:hover, .footer-top-link:hover {
+  color: var(--gold-bright);
+}
+
+.replay-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-bullet {
+  color: var(--gold-border);
+}
+
+.footer-kashmir-peace {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes flameFlickerOuter {
+  0%   { transform: scale(1) rotate(0deg); opacity: 0.95; }
+  25%  { transform: scale(1.02, 0.97) rotate(1deg); opacity: 1; }
+  50%  { transform: scale(0.98, 1.03) rotate(-1deg); opacity: 0.9; }
+  75%  { transform: scale(1.03, 0.99) rotate(0.5deg); opacity: 0.98; }
+  100% { transform: scale(1, 1) rotate(0deg); opacity: 0.95; }
+}
+
+@keyframes flameFlickerInner {
+  0%   { transform: scale(1) rotate(0deg); }
+  30%  { transform: scale(1.03, 0.96) rotate(-1deg); }
+  70%  { transform: scale(0.97, 1.04) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes diyaGlowPulse {
+  0%   { opacity: 0.45; transform: translateX(-50%) scale(0.95); }
+  100% { opacity: 0.85; transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes auraBreath {
+  0%   { opacity: 0.3; transform: scale(0.96); }
+  50%  { opacity: 0.7; transform: scale(1.04); }
+  100% { opacity: 0.3; transform: scale(0.96); }
+}
+
+@keyframes auraThrob {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+}
+
+@keyframes waveBounce {
+  0%   { height: 6px; }
+  50%  { height: 38px; }
+  100% { height: 12px; }
+}
+
+@keyframes haloRipple {
+  0%   { transform: scale(1); opacity: 0.6; }
+  50%  { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Utility Hidden */
+.hidden {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLETS & DESKTOPS)
+   ========================================================================== */
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2.6rem;
+  }
+  
+  .grandfather-name {
+    font-size: 3.2rem;
+  }
+
+  .voice-card {
+    padding: 42px 36px;
+  }
+
+  .memories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .letter-parchment {
+    padding: 50px 44px 40px;
+  }
+
+  .handwritten-font {
+    font-size: 1.45rem;
+    line-height: 1.75;
+  }
+
+  .arabic-script {
+    font-size: 2.1rem;
+  }
+
+  .arabic-dua-text {
+    font-size: 1.8rem;
+  }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #ambient-canvas {
+    display: none;
+  }
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
